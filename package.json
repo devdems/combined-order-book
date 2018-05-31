@@ -2,11 +2,11 @@
   "name": "ss-code-challenge",
   "version": "1.0.0",
   "description": "Code challenge for ShapeShift",
-  "main": "server/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "node server/index.js",
-    "dev": "nodemon server/index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
