@@ -1,5 +1,6 @@
-const router = new require('express').Router()
+const router = require('express').Router()
 
 router.use('/hello', (req, res) => res.send('hello'));
+router.use('/bittrex', require('./bittrex'))
 
 module.exports = router
