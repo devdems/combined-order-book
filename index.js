@@ -1,20 +1,8 @@
-const express = require('express');
-const path = require('path');
-const logger = require('morgan');
-const bodyParser = require('body-parser');
-
-const app = express();
-
-app.use(logger('dev'))
-app.use(express.static(path.join(__dirname, '/client/build')));
-
-app.use('/api', require('./routes'));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/client/build/index.html'));
-});
+const server = require('./server')
 
 const port = process.env.PORT || 5000;
-app.listen(port);
 
-console.log(`Listening on ${port}`);
+server().listen(port, (err) => {
+  if (err) return console.log(err)
+  console.log(`Listening on ${port}`);
+});
