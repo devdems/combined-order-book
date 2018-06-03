@@ -18,22 +18,13 @@ injectGlobal`
 
   .App-header {
     background-color: #222;
-    height: 150px;
+    height: 60px;
     padding: 20px;
     color: white;
   }
 
   .App-title {
     font-size: 1.5em;
-  }
-
-  .App-intro {
-    font-size: large;
-  }
-
-  @keyframes App-logo-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
   }
 
 `
