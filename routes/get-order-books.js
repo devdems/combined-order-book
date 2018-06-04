@@ -1,26 +1,33 @@
 const router = require('express').Router();
 const api = require('./api');
-const standardize = require('./util/standardizeOrderBooks')
+const standardize = require('./util/standardizeOrderBooks');
+const translateMarket = require('./util/translateMarketSyntax');
 
-router.get('/', getOrderBook);
+router.get('/', getOrderBooks);
 
-async function getOrderBook(req, res) {
+async function getOrderBooks(req, res) {
 
-  const market = (
-    req.query.market && req.query.market.split('-').join('_').toUpperCase()
-  ) || 'BTC_ETH';
+  const market = req.query.market || 'BTC-ETH';
+  if (!req.query.exchanges) return res.status(400).send('No exhanges selected');
 
-  let response;
+  const exchanges = req.query.exchanges.split(',').filter(ex =>
+    Object.keys(api).includes(ex)
+  );
 
-  try {
-    response = await api.getOrderBook(market);
-    if (response.error) return res.status(400).send(response.error);
-    const orderBook = standardize(response);
-    res.send(response);
-  } catch(err) {
-    res.status(404).send(err);
+  let combinedBook = {};
+
+  for (exchange of exchanges) {
+    try {
+      const translatedMarket = translateMarket[exchange](market);
+      const response = await api[exchange].getOrderBook(translatedMarket);
+      const orderBook = standardize[exchange](response);
+      combinedBook[exchange] = orderBook;
+    } catch(err) {
+      combinedBook[exchange] = ({ err });
+    }
   }
 
+  res.send(combinedBook);
 }
 
 module.exports = router;
