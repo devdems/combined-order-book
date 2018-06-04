@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const api = require('./api/bittrexAPI');
+const standardize = require('./util/standardizeOrderBooks').bittrex
 
 router.get('/', (req, res) => res.send('bittrex'));
 router.get('/get-order-book', getOrderBook);
@@ -14,19 +15,9 @@ async function getOrderBook(req, res) {
 
   try {
     response = await api.getOrderBook(market);
-
     if (!response.success) return res.status(400).send(response.message);
-
-    const orderBook = response.result
-
-    orderBook.asks = orderBook.sell
-    orderBook.bids = orderBook.buy
-
-    delete orderBook.sell
-    delete orderBook.buy
-
+    const orderBook = standardize(response)
     res.send(orderBook);
-
   } catch(err) {
     res.status(404).send(err);
   }

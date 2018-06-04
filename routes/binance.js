@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const api = require('./api/binanceAPI');
+const standardize = require('./util/standardizeOrderBooks').binance
 
 router.get('/', (req, res) => res.send('binance'));
 router.get('/get-order-book', getOrderBook);
@@ -16,10 +17,9 @@ async function getOrderBook(req, res) {
   try {
     response = await api.getOrderBook(market);
 
-    response.bids = response.bids.map(bid => ({Quantity: bid[1], Rate: bid[0]}))
-    response.asks = response.asks.map(ask => ({Quantity: ask[1], Rate: ask[0]}))
+    const orderBook = standardize(response)
 
-    res.send(response);
+    res.send(orderBook);
 
   } catch(err) {
     res.status(400).send(response.statusText);

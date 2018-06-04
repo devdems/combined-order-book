@@ -9,7 +9,7 @@ describe('API Routes', () => {
     app = createServer();
     app.listen((err) => {
       if (err) return done(err);
-      done();
+      return done();
     });
   });
 
