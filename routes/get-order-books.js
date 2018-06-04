@@ -7,8 +7,9 @@ router.get('/', getOrderBooks);
 
 async function getOrderBooks(req, res) {
 
-  const market = req.query.market || 'BTC-ETH';
   if (!req.query.exchanges) return res.status(400).send('No exhanges selected');
+
+  const market = req.query.market || 'BTC-ETH';
 
   const exchanges = req.query.exchanges.split(',').filter(ex =>
     Object.keys(api).includes(ex)
