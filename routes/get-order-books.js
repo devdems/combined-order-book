@@ -1,15 +1,13 @@
 const router = require('express').Router();
-const api = require('./api/poloniexAPI');
-const standardize = require('./util/standardizeOrderBooks').poloniex
-const translateMarket = require('./util/translateMarketSyntax').poloniex
+const api = require('./api');
+const standardize = require('./util/standardizeOrderBooks')
 
-router.get('/', (req, res) => res.send('poloniex'));
-router.get('/get-order-book', getOrderBook);
+router.get('/', getOrderBook);
 
 async function getOrderBook(req, res) {
 
   const market = (
-    req.query.market && translateMarket(req.query.market)
+    req.query.market && req.query.market.split('-').join('_').toUpperCase()
   ) || 'BTC_ETH';
 
   let response;

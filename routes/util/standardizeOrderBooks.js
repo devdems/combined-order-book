@@ -1,3 +1,5 @@
+// Helpers to standardizing the json formats of books from each exchange
+
 module.exports = {
 
   binance: response => {
