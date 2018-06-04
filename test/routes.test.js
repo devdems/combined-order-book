@@ -1,40 +1,37 @@
-const expect = require('chai').expect
-const request = require('supertest')
-const createServer = require('../server.js')
+const expect = require('chai').expect;
+const request = require('supertest');
+const createServer = require('../server.js');
 
 describe('API Routes', () => {
   var app;
 
-  before(function(done) {
+  beforeEach(done => {
     app = createServer();
-    app.listen(function(err) {
-      if (err) { return done(err); }
+    return app.listen((err) => {
+      if (err) return done(err);
       done();
     });
   });
 
-  describe('binance', () => {
+  describe('poloniex', () => {
     describe('get-order-book', () => {
       it('should return default order book if missing query params', () => {
-        request(app)
-        .get('/api/binance/get-order-book')
-        .expect(200, (err, res) => {
-          if (err) return done(err);
-          const { body } = res;
-          expect(body.bids).toExist();
-          expect(body.asks).toExist();
-        });
+        return request(app)
+          .get('/api/poloniex/get-order-book')
+          .expect(200)
+          .expect(res => {
+            expect(res.body.asks).to.be.an('array');
+            expect(res.body.bids).to.be.an('array');
+          });
       });
-
-      it('should custom order book from standardized query params', () => {
-        request(app)
-        .get('/api/binance/get-order-book?market=ETH-XRP')
-        .expect(200, (err, res) => {
-          if (err) return done(err);
-          const { body } = res;
-          expect(body.bids).toExist();
-          expect(body.asks).toExist();
-        });
+      it('should respond with custom order book from standardized query params', () => {
+        return request(app)
+          .get('/api/poloniex/get-order-book?market=BTC-XRP')
+          .expect(200)
+          .expect(res => {
+            expect(res.body.asks).to.be.an('array');
+            expect(res.body.bids).to.be.an('array');
+          });
       });
     });
   });
@@ -42,49 +39,45 @@ describe('API Routes', () => {
   describe('bittrex', () => {
     describe('get-order-book', () => {
       it('should return default order book if missing query params', () => {
-        request(app)
-        .get('/api/bittrex/get-order-book')
-        .expect(200, (err, res) => {
-          if (err) return done(err);
-          const { body } = res;
-          expect(body.bids).toExist();
-          expect(body.asks).toExist();
-        });
+        return request(app)
+          .get('/api/bittrex/get-order-book')
+          .expect(200)
+          .expect(res => {
+            expect(res.body.asks).to.be.an('array');
+            expect(res.body.bids).to.be.an('array');
+          });
       });
-      it('should custom order book from standardized query params', () => {
-        request(app)
-        .get('/api/bittrex/get-order-book?market=ETH-XRP')
-        .expect(200, (err, res) => {
-          if (err) return done(err);
-          const { body } = res;
-          expect(body.bids).toExist();
-          expect(body.asks).toExist();
-        });
+      it('should respond with custom order book from standardized query params', () => {
+        return request(app)
+          .get('/api/bittrex/get-order-book?market=BTC-XRP')
+          .expect(200)
+          .expect(res => {
+            expect(res.body.asks).to.be.an('array');
+            expect(res.body.bids).to.be.an('array');
+          });
       });
     });
   });
 
-  describe('poloniex', () => {
+  describe('binance', () => {
     describe('get-order-book', () => {
       it('should return default order book if missing query params', () => {
-        request(app)
-        .get('/api/poloniex/get-order-book')
-        .expect(200, (err, res) => {
-          if (err) return done(err);
-          const { body } = res;
-          expect(body.bids).toExist();
-          expect(body.asks).toExist();
-        });
+        return request(app)
+          .get('/api/binance/get-order-book')
+          .expect(200)
+          .expect(res => {
+            expect(res.body.asks).to.be.an('array');
+            expect(res.body.bids).to.be.an('array');
+          });
       });
-      it('should custom order book from standardized query params', () => {
-        request(app)
-        .get('/api/poloniex/get-order-book?market=ETH-XRP')
-        .expect(200, (err, res) => {
-          if (err) return done(err);
-          const { body } = res;
-          expect(body.bids).toExist();
-          expect(body.asks).toExist();
-        });
+      it('should respond with custom order book from standardized query params', () => {
+        return request(app)
+          .get('/api/binance/get-order-book?market=BTC-XRP')
+          .expect(200)
+          .expect(res => {
+            expect(res.body.asks).to.be.an('array');
+            expect(res.body.bids).to.be.an('array');
+          });
       });
     });
   });
