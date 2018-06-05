@@ -5,7 +5,8 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   display: flex;
-  flex-direction: ${props => props.direction ? props.direction : 'row'}
+  flex-direction: ${props => props.direction ? props.direction : 'row'};
+  flex-grow: ${props => props.grow ? props.grow : 1};
   justify-content: center;
 `
 const InformingText = styled.div`

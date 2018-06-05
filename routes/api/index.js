@@ -1,5 +1,5 @@
 module.exports = {
   binance: require('./binanceAPI'),
-  bittrex: require('./bittrexApi'),
+  bittrex: require('./bittrexAPI'),
   poloniex: require('./poloniexAPI'),
 }
