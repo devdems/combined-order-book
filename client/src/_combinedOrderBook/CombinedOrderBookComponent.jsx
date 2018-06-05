@@ -1,13 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Spinner from 'react-spinner-material'
 import styled from 'styled-components'
 
 const Container = styled.div`
   display: flex;
+  flex: 1 0 auto;
+  border: 1px solid red;
+`
+
+const FlexDiv = styled.div`
+  display: flex;
   flex-direction: ${props => props.direction ? props.direction : 'row'};
   flex-grow: ${props => props.grow ? props.grow : 1};
   justify-content: center;
+  align-items: stretch;
+  border: 1px solid blue;
 `
 const InformingText = styled.div`
   display: flex;
@@ -35,16 +42,13 @@ export default class CombinedOrderBookComponent extends React.Component {
       <Container>
         {
           fetchingExchanges ?
-            <Container direction="column">
-              <InformingText>Fetching Supported Exchanges</InformingText>
-              <Spinner
-                visible
-                size={200}
-                spinnerColor='blue'
-                spinnerWidth={10}
-              />
-            </Container> :
-            <Container>DONE</Container>
+            <InformingText>Fetching Supported Exchanges...</InformingText> :
+            <FlexDiv direction="column">
+              <FlexDiv>
+                <FlexDiv grow={1}></FlexDiv>
+                <FlexDiv grow={1}></FlexDiv>
+              </FlexDiv>
+            </FlexDiv>
         }
       </Container>
     )
