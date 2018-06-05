@@ -1,4 +1,4 @@
-// Helpers to standardizing the json formats of books from each exchange
+// Helpers for standardizing the json formats of books from each exchange
 
 module.exports = {
 
