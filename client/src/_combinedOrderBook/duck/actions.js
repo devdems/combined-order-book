@@ -1,17 +1,17 @@
-import actions from './actions'
+import types from './types'
 
 const getSupportedExchanges = () => ({
-  type: actions.GET_SUPPORTED_EXCHANGES,
+  type: types.GET_SUPPORTED_EXCHANGES,
 })
 
 const getSupportedExchangesSuccess = (exchanges) => ({
   payload: exchanges,
-  type: actions.GET_SUPPORTED_EXCHANGES_SUCCESS,
+  type: types.GET_SUPPORTED_EXCHANGES_SUCCESS,
 })
 
 const getSupportedExchangesFail = (msg) => ({
   payload: msg,
-  type: actions.GET_SUPPORTED_EXCHANGES_FAIL,
+  type: types.GET_SUPPORTED_EXCHANGES_FAIL,
 })
 
 export default {

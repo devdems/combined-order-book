@@ -3,6 +3,8 @@ import types from './types'
 const initialState = {
   fetchingExchanges: false,
   exchanges: [],
+  activeExchanges: {},
+  currentMarket: '',
 }
 
 export default (state = initialState, action) => {
@@ -21,7 +23,7 @@ export default (state = initialState, action) => {
     case types.GET_SUPPORTED_EXCHANGES_FAIL: {
       return Object.assign({}, state, {
         fetchingExchanges: false,
-        exchanges: 'Cannot Fetch Exchanges',
+        exchanges: action.payload,
       })
     }
     default: return state

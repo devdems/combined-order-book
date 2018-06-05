@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.styles.js'
+import CombinedOrderBook from './_combinedOrderBook'
 
 class App extends Component {
   render() {
@@ -8,6 +9,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Combined Order Book</h1>
         </header>
+        <CombinedOrderBook />
       </div>
     );
   }

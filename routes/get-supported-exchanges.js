@@ -4,7 +4,7 @@ const api = require('./api');
 router.get('/', getSupportedExchanges);
 
 function getSupportedExchanges(req, res) {
-  const supportedExchanges = Object.keys(api);
+  const supportedExchanges = Object.key(api);
   res.send(supportedExchanges);
 }
 
