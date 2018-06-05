@@ -4,7 +4,7 @@ import actions from './actions'
 const fetchSupportedExchanges = () => {
   return dispatch => {
     dispatch(actions.getSupportedExchanges())
-    axios.get('./api/get-supported-activeExchanges')
+    axios.get('./api/get-supported-exchanges')
       .then(res => {
         const { data } = res;
         dispatch(actions.getSupportedExchangesSuccess(data))
