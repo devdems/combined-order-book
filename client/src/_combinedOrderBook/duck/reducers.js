@@ -28,7 +28,6 @@ export default (state = initialState, action) => {
       });
     }
     case types.TOGGLE_EXCHANGE: {
-      console.log(state)
       const activeExchanges = { ...state.activeExchanges}
       activeExchanges[action.payload] = !state.activeExchanges[action.payload]
       return Object.assign({}, state, {

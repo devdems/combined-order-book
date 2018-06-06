@@ -41,10 +41,10 @@ class CombinedOrderBookComponent extends React.Component {
             <FlexDiv direction="column">
               <FlexDiv grow={0.05} direction="column">
                 <FlexDiv grow={1}>
-                  <MarketInputsContainer />
+                  <ExchangeSelectorContainer />
                 </FlexDiv>
                 <FlexDiv grow={1}>
-                  <ExchangeSelectorContainer />
+                  <MarketInputsContainer />
                 </FlexDiv>
               </FlexDiv>
               <FlexDiv grow={1}>

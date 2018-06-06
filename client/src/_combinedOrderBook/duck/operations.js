@@ -6,8 +6,7 @@ const fetchSupportedExchanges = () => {
     dispatch(actions.getSupportedExchanges())
     return axios.get('/api/get-supported-exchanges')
       .then(res => {
-        const { data } = res;
-        const activeExchanges = data.reduce((obj, ex) => {
+        const activeExchanges = res.data.reduce((obj, ex) => {
           obj[ex] = false;
           return obj;
         }, {})
@@ -17,6 +16,12 @@ const fetchSupportedExchanges = () => {
         const status = res.response.status;
         dispatch(actions.getSupportedExchangesFail(status));
       });
+  }
+}
+
+const fetchBooks = () => {
+  return (dispatch, getState) => {
+    
   }
 }
 
