@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import ExchangeSelectorContainer from './ExchangeSelectorContainer'
 import { FlexDiv } from './Components.styled'
 
 const Container = styled.div`
@@ -38,8 +39,10 @@ class CombinedOrderBookComponent extends React.Component {
             <InformingText>Fetching Supported Exchanges...</InformingText> :
             <FlexDiv direction="column">
               <FlexDiv grow={0.1}>
-                <FlexDiv grow={1}></FlexDiv>
-                <FlexDiv grow={1}></FlexDiv>
+                <FlexDiv grow={1}>
+                  <ExchangeSelectorContainer />
+                </FlexDiv>
+                <FlexDiv grow={0.5}></FlexDiv>
               </FlexDiv>
               <FlexDiv grow={1}>
 

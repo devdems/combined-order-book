@@ -15,9 +15,14 @@ export default (state = initialState, action) => {
       });
     }
     case types.GET_SUPPORTED_EXCHANGES_SUCCESS: {
+      const activeExchanges = action.payload.reduce((obj, ex) => {
+        obj[ex] = false;
+        return obj;
+      }, {})
       return Object.assign({}, state, {
-        fetchingExchanges: false,
+        activeExchanges,
         exchanges: action.payload,
+        fetchingExchanges: false,
       });
     }
     case types.GET_SUPPORTED_EXCHANGES_FAIL: {
@@ -25,6 +30,13 @@ export default (state = initialState, action) => {
         fetchingExchanges: false,
         exchanges: action.payload,
       });
+    }
+    case types.TOGGLE_EXCHANGE: {
+      const activeExchanges = { ...state.activeExchanges}
+      activeExchanges[action.payload] = !state.activeExchanges[action.payload]
+      return Object.assign({}, state, {
+        activeExchanges,
+      })
     }
     default: return state
   }

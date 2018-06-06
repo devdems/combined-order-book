@@ -4,18 +4,25 @@ import actions from './actions'
 const fetchSupportedExchanges = () => {
   return dispatch => {
     dispatch(actions.getSupportedExchanges())
-    axios.get('./api/get-supported-exchanges')
+    return axios.get('/api/get-supported-exchanges')
       .then(res => {
         const { data } = res;
         dispatch(actions.getSupportedExchangesSuccess(data))
       })
       .catch(res => {
-        const statusText = res.response.statusText;
-        dispatch(actions.getSupportedExchangesFail(statusText))
+        const status = res.response.status;
+        dispatch(actions.getSupportedExchangesFail(status));
       });
+  }
+}
+
+const toggleExchange = exchange => {
+  return dispatch => {
+    dispatch(actions.toggleExchange(exchange));
   }
 }
 
 export default {
   fetchSupportedExchanges,
+  toggleExchange,
 };
