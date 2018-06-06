@@ -17,6 +17,10 @@ const Container = styled.div`
 const ExchangeButton = FlexDiv.extend`
   background-color: ${props => props.active ? 'green' : 'white'};
   flex: 1 1;
+  cursor: pointer;
+  &:hover {
+    background-color: ${props => props.active ? 'green' : 'grey'};
+  }
 `
 
 class ExchangeSelectorComponent extends React.Component {

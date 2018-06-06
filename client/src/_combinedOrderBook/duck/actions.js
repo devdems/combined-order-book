@@ -22,7 +22,11 @@ const toggleExchange = exchange => ({
 const setMarketPair = pair => ({
   payload: pair,
   type: types.SET_MARKET_PAIR,
-})
+});
+
+const fetchingBooks = pair => ({
+  type: types.SET_MARKET_PAIR,
+});
 
 export default {
   getSupportedExchanges,
@@ -30,4 +34,5 @@ export default {
   getSupportedExchangesFail,
   toggleExchange,
   setMarketPair,
+  fetchingBooks
 }

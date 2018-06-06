@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import ExchangeSelectorContainer from './ExchangeSelectorContainer'
 import MarketInputsContainer from './MarketInputsContainer'
+import ViewBooksButtonContainer from './ViewBooksButtonContainer'
 import { FlexDiv } from './Components.styled'
 
 const Container = styled.div`
@@ -45,6 +46,7 @@ class CombinedOrderBookComponent extends React.Component {
                 </FlexDiv>
                 <FlexDiv grow={1}>
                   <MarketInputsContainer />
+                  <ViewBooksButtonContainer />
                 </FlexDiv>
               </FlexDiv>
               <FlexDiv grow={1}>

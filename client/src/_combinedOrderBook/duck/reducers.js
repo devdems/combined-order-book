@@ -39,6 +39,11 @@ export default (state = initialState, action) => {
         marketPair: action.payload,
       })
     }
+    case types.FETCHING_BOOKS: {
+      return Object.assign({}, state, {
+        fetchingBooks: true,
+      })
+    }
     default: return state
   }
 }
