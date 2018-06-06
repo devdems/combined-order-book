@@ -18,4 +18,4 @@ const fetchSupportedExchanges = () => {
 
 export default {
   fetchSupportedExchanges,
-}
+};
