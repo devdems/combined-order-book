@@ -45,6 +45,8 @@ describe('operations', () => {
     let store
     let mock
 
+    const data = ['binance', 'bittrex', 'poloniex']
+
     beforeEach(() => {
       const state = {
         combinedOrderBook: {
@@ -58,10 +60,7 @@ describe('operations', () => {
 
       mock
         .onGet('/api/get-supported-exchanges')
-        .reply(200, {
-          data: ['binance', 'bittrex']
-        })
-
+        .reply(200, data)
     })
 
     afterEach(() => {
@@ -76,12 +75,12 @@ describe('operations', () => {
       expect(actions[0].type).to.equal(expectedAction);
     })
 
-    it('should dispatch success action second if 200', async () => {
+    it('should dispatch success action second with payload if 200', async () => {
       await store.dispatch(operations.fetchSupportedExchanges());
       const actions = store.getActions();
       const expectedAction = types.GET_SUPPORTED_EXCHANGES_SUCCESS;
-      console.log(actions)
       expect(actions[1].type).to.equal(expectedAction);
+      expect(actions[1].payload).to.equal(data);
     })
 
   })

@@ -22,6 +22,12 @@ const toggleExchange = exchange => {
   }
 }
 
+const setMarketPair = pair => {
+  return dispatch => {
+    
+  }
+}
+
 export default {
   fetchSupportedExchanges,
   toggleExchange,

@@ -19,7 +19,7 @@ const ExchangeButton = FlexDiv.extend`
   flex: 1 1;
 `
 
-class CombinedOrderBookComponent extends React.Component {
+class ExchangeSelectorComponent extends React.Component {
   static propTypes = {
     toggleExchange: PropTypes.func.isRequired,
     exchanges: PropTypes.arrayOf(PropTypes.string),
@@ -63,4 +63,4 @@ class CombinedOrderBookComponent extends React.Component {
   }
 }
 
-export default CombinedOrderBookComponent
+export default ExchangeSelectorComponent

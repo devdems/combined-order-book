@@ -4,7 +4,7 @@ const initialState = {
   fetchingExchanges: false,
   exchanges: [],
   activeExchanges: {},
-  currentMarket: '',
+  marketPair: [],
 };
 
 export default (state = initialState, action) => {
