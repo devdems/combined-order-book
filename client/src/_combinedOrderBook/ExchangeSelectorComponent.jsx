@@ -12,7 +12,7 @@ const Container = styled.div`
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid green;
-  height: 60px;
+  height: 40px;
 `
 const ExchangeButton = FlexDiv.extend`
   background-color: ${props => props.active ? 'green' : 'white'};

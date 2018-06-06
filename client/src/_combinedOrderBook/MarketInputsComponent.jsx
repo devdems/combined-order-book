@@ -2,55 +2,69 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { FlexDiv } from './Components.styled'
+import { FlexDiv, FlexSpacer } from './Components.styled'
 
 const Container = styled.div`
   display: flex;
   flex: 1 0;
-  max-width: 800px;
-  width: 100%;
+  flex-direction: column;
 `
-const InformingText = styled.div`
-  display: flex;
-  font-size: 1.5em;
+const Input = styled.input`
+  max-width: 80px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid grey;
+  font-size: 1.3em;
+  text-align: center;
 `
 
-class CombinedOrderBookComponent extends React.Component {
+class MarketInputsComponent extends React.Component {
   static propTypes = {
-    marketPair: PropTypes.bool,
+    setMarketPair: PropTypes.func.isRequired,
+    marketPair: PropTypes.arrayOf(PropTypes.string),
   }
 
   static defaultProps = {
-    marketPair: false,
+    marketPair: ['BTC', 'ETH'],
   }
 
-  constructor(props) {
-    super(props)
-    this.props.fetchSupportedExchanges()
+  shouldComponentUpdate = nextProps => {
+    return (
+      this.props.marketPair !== nextProps.marketPair
+    )
+  }
+
+  updateMarketPair = (index, e) => {
+    const { marketPair, setMarketPair } = this.props;
+    const newMarketPair = [...marketPair];
+    console.log(newMarketPair)
+    if (e.target.value.length <= 4) {
+      newMarketPair[index] = e.target.value.toUpperCase();
+      setMarketPair(newMarketPair);
+    }
   }
 
   render() {
-    const { fetchingExchanges } = this.props
+    const { marketPair } = this.props;
     return (
       <Container>
-        {
-          fetchingExchanges ?
-            <InformingText>Fetching Supported Exchanges...</InformingText> :
-            <FlexDiv direction="column">
-              <FlexDiv grow={0.1}>
-                <FlexDiv grow={1}>
-                  <ExchangeSelectorContainer />
-                </FlexDiv>
-                <FlexDiv grow={0.5}></FlexDiv>
-              </FlexDiv>
-              <FlexDiv grow={1}>
-
-              </FlexDiv>
-            </FlexDiv>
-        }
+        Pair:
+        <FlexDiv>
+          <FlexSpacer grow={1} />
+          <Input
+            value={marketPair[0]}
+            onChange={e => this.updateMarketPair(0, e)}
+          />
+          <FlexSpacer grow={.1}>-</FlexSpacer>
+          <Input
+            value={marketPair[1]}
+            onChange={e => this.updateMarketPair(1, e)}
+          />
+          <FlexSpacer grow={1} />
+        </FlexDiv>
       </Container>
     )
   }
 }
 
-export default CombinedOrderBookComponent
+export default MarketInputsComponent

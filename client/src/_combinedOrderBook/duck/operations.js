@@ -7,7 +7,11 @@ const fetchSupportedExchanges = () => {
     return axios.get('/api/get-supported-exchanges')
       .then(res => {
         const { data } = res;
-        dispatch(actions.getSupportedExchangesSuccess(data))
+        const activeExchanges = data.reduce((obj, ex) => {
+          obj[ex] = false;
+          return obj;
+        }, {})
+        dispatch(actions.getSupportedExchangesSuccess(activeExchanges))
       })
       .catch(res => {
         const status = res.response.status;
@@ -16,19 +20,13 @@ const fetchSupportedExchanges = () => {
   }
 }
 
-const toggleExchange = exchange => {
-  return dispatch => {
-    dispatch(actions.toggleExchange(exchange));
-  }
-}
-
-const setMarketPair = pair => {
-  return dispatch => {
-    
-  }
-}
+const {
+  toggleExchange,
+  setMarketPair,
+} = actions;
 
 export default {
   fetchSupportedExchanges,
   toggleExchange,
+  setMarketPair,
 };

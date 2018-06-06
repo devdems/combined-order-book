@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { expect } from 'chai';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios'
-import { operations, types } from './';
+import reducer, { operations, types } from './';
 
 
 describe('operations', () => {
@@ -16,27 +16,22 @@ describe('operations', () => {
 
   describe('toggleExchange', () => {
     const state = {
-      combinedOrderBook: {
-        activeExchanges: {
-          binance: false,
-        }
+      activeExchanges: {
+        binance: false,
+        bittrex: true,
       }
     }
 
-    it('should toggle dispatch toggleExchange action', () => {
-      const store = mockStore(state);
-      store.dispatch(operations.toggleExchange('binance'));
-      const actions = store.getActions();
-      const expectedType = types.TOGGLE_EXCHANGE;
-      expect(actions[0].type).to.equal(expectedType);
+    it('should set the target exchange to active if it wasnt', () => {
+      const newState = reducer(state, operations.toggleExchange('binance'));
+      expect(newState.activeExchanges.binance)
+        .to.equal(true);
     })
 
-    it('should pass the exchange as a payload', () => {
-      const store = mockStore(state);
-      const exchange = 'binance';
-      store.dispatch(operations.toggleExchange(exchange));
-      const actions = store.getActions();
-      expect(actions[0].payload).to.equal(exchange);
+    it('should set the target exchange to inactive if it was', () => {
+      const newState = reducer(state, operations.toggleExchange('bittrex'));
+      expect(newState.activeExchanges.binance)
+        .to.equal(false);
     })
   })
 
@@ -80,8 +75,12 @@ describe('operations', () => {
       const actions = store.getActions();
       const expectedAction = types.GET_SUPPORTED_EXCHANGES_SUCCESS;
       expect(actions[1].type).to.equal(expectedAction);
-      expect(actions[1].payload).to.equal(data);
     })
+  })
 
+  describe('setMarketPair', () => {
+    it('should set the market pair correctly', () => {
+
+    })
   })
 })

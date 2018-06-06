@@ -13,10 +13,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   const {
-    fetchSupportedExchanges,
+    setMarketPair,
   } = operations;
   return {
-    fetchSupportedExchanges: () => dispatch(fetchSupportedExchanges()),
+    setMarketPair: (pair) => dispatch(setMarketPair(pair)),
   }
 }
 

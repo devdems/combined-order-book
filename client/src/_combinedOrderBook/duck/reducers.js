@@ -4,7 +4,7 @@ const initialState = {
   fetchingExchanges: false,
   exchanges: [],
   activeExchanges: {},
-  marketPair: [],
+  marketPair: ['BTC', 'ETH'],
 };
 
 export default (state = initialState, action) => {
@@ -15,13 +15,9 @@ export default (state = initialState, action) => {
       });
     }
     case types.GET_SUPPORTED_EXCHANGES_SUCCESS: {
-      const activeExchanges = action.payload.reduce((obj, ex) => {
-        obj[ex] = false;
-        return obj;
-      }, {})
       return Object.assign({}, state, {
-        activeExchanges,
-        exchanges: action.payload,
+        activeExchanges: action.payload,
+        exchanges: Object.keys(action.payload),
         fetchingExchanges: false,
       });
     }
@@ -32,10 +28,16 @@ export default (state = initialState, action) => {
       });
     }
     case types.TOGGLE_EXCHANGE: {
+      console.log(state)
       const activeExchanges = { ...state.activeExchanges}
       activeExchanges[action.payload] = !state.activeExchanges[action.payload]
       return Object.assign({}, state, {
         activeExchanges,
+      })
+    }
+    case types.SET_MARKET_PAIR: {
+      return Object.assign({}, state, {
+        marketPair: action.payload,
       })
     }
     default: return state
