@@ -28,14 +28,20 @@ class CombinedOrderBookComponent extends React.Component {
   static propTypes = {
     initialBookFetching: PropTypes.bool,
     fetchBookInitial: PropTypes.func.isRequired,
+    autoUpdateIntervalObj: PropTypes.any,
   }
 
   static defaultProps = {
     initialBookFetching: false,
+    autoUpdateIntervalObj: '',
   }
 
   render() {
-    const { initialBookFetching, fetchBookInitial } = this.props
+    const {
+      initialBookFetching,
+      fetchBookInitial,
+      autoUpdateIntervalObj,
+     } = this.props
     return (
       <Container>
         {
@@ -49,7 +55,11 @@ class CombinedOrderBookComponent extends React.Component {
             <Button
               onClick={fetchBookInitial}
             >
-              Start Fetching Books
+              {
+                autoUpdateIntervalObj ?
+                'Change Params' :
+                  'Start with current params'
+              }
             </Button>
         }
       </Container>

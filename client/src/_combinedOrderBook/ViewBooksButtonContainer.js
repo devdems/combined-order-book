@@ -4,12 +4,12 @@ import ViewBooksButtonComponent from './ViewBooksButtonComponent'
 
 const mapStateToProps = state => {
   const {
-    exchanges,
-    activeExchanges,
+    initialBookFetching,
+    autoUpdateIntervalObj,
   } = state.combinedOrderBook;
   return {
-    exchanges,
-    activeExchanges,
+    initialBookFetching,
+    autoUpdateIntervalObj,
   };
 }
 

@@ -36,23 +36,30 @@ const fetchBookInitial = () => {
     return axios.get(url)
       .then(res => {
         dispatch(actions.initialBookFetchingSuccess(res.data))
-        const autoUpdateInterval = window.setInterval(() => {
-          dispatch(actions.fetchBook());
-          axios.get(url)
-            .then(res => {
-              dispatch(actions.fetchBookSuccess(res.data));
-              console.log('then', res);
-            })
-            .catch(res => {
-              dispatch(actions.fetchBookFail('failure'));
-              console.log('catch', res);
-            });
-        }, 5000);
+        const autoUpdateInterval = window.setInterval(
+          intervalBookFetch(dispatch, url),
+          5000,
+        );
         dispatch(actions.setAutoUpdateInterval(autoUpdateInterval))
       })
       .catch(res => {
         dispatch()
       })
+  }
+}
+
+function intervalBookFetch(dispatch, url) {
+  return () => {
+    dispatch(actions.fetchBook());
+    axios.get(url)
+      .then(res => {
+        dispatch(actions.fetchBookSuccess(res.data));
+        console.log('then', res);
+      })
+      .catch(res => {
+        dispatch(actions.fetchBookFail('failure'));
+        console.log('catch', res);
+      });
   }
 }
 
