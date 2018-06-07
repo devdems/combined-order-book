@@ -6,7 +6,7 @@ const initialState = {
   activeExchanges: {},
   marketPair: ['BTC', 'ETH'],
   autoUpdateIntervalObj: '',
-  intialFetching: false,
+  intialBookFetching: false,
   fetching: false,
   fetchFailedCount: 0,
   fetchFailed: false,
@@ -44,6 +44,7 @@ export default (state = initialState, action) => {
     case types.SET_MARKET_PAIR: {
       return Object.assign({}, state, {
         marketPair: action.payload,
+        initialBookFetching: false,
       });
     }
     case types.INITIAL_BOOK_FETCHING: {
