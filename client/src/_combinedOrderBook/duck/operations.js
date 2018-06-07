@@ -22,6 +22,21 @@ const fetchSupportedExchanges = () => {
 const fetchBooks = () => {
   return (dispatch, getState) => {
     dispatch(actions.fetchingBooks())
+    const state = getState().combinedOrderBook
+    console.log(state);
+    const market = state.marketPair.join('-');
+    const exchanges = state.exchanges.filter(ex =>
+      state.activeExchanges[ex]
+    ).join(',');
+    const baseUrl = './api/get-order-books';
+    const url = `${baseUrl}?market=${market}&exchanges=${exchanges}`;
+    return axios.get(url)
+      .then(res => {
+        console.log('then', res);
+      })
+      .catch(res => {
+        console.log('catch', res);
+      })
   }
 }
 
@@ -34,4 +49,5 @@ export default {
   fetchSupportedExchanges,
   toggleExchange,
   setMarketPair,
+  fetchBooks,
 };

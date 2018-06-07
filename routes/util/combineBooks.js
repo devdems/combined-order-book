@@ -10,7 +10,7 @@ module.exports = (booksObj) => {
 
   exchanges.forEach(exchange => {
     booksObj[exchange].bids.forEach(bid => {
-      const volume = parseFloat(bid.Quantity, 10);
+      const volume = Number(bid.Quantity);
       const rate = bid.Rate
       if (!combinedBook.bidsByPrice[rate]) {
         combinedBook.bidsByPrice[rate] = {
@@ -23,7 +23,7 @@ module.exports = (booksObj) => {
       }
     });
     booksObj[exchange].asks.forEach(ask => {
-      const volume = parseFloat(ask.Quantity, 10);
+      const volume = Number(ask.Quantity);
       const rate = ask.Rate
       if (!combinedBook.asksByPrice[rate]) {
         combinedBook.asksByPrice[rate] = {
@@ -38,11 +38,11 @@ module.exports = (booksObj) => {
   });
 
   combinedBook.bidPrices = Object.keys(combinedBook.bidsByPrice).sort((a, b) => {
-    return parseFloat(a) < parseFloat(b);
-  })
+    return Number(b) - Number(a);
+  });
   combinedBook.askPrices = Object.keys(combinedBook.asksByPrice).sort((a, b) => {
-    return parseFloat(a) > parseFloat(b);
-  })
+    return Number(a) - Number(b);
+  });
 
   return combinedBook
 }

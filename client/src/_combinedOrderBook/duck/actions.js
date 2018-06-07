@@ -25,7 +25,7 @@ const setMarketPair = pair => ({
 });
 
 const fetchingBooks = pair => ({
-  type: types.SET_MARKET_PAIR,
+  type: types.FETCHING_BOOKS,
 });
 
 export default {
