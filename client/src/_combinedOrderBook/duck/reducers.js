@@ -5,6 +5,7 @@ const initialState = {
   exchanges: [],
   activeExchanges: {},
   marketPair: ['BTC', 'ETH'],
+  liveUpdateInterval: '',
 };
 
 export default (state = initialState, action) => {
@@ -39,9 +40,9 @@ export default (state = initialState, action) => {
         marketPair: action.payload,
       })
     }
-    case types.FETCHING_BOOKS: {
+    case types.INITIAL_BOOK_FETCHING: {
       return Object.assign({}, state, {
-        fetchingBooks: true,
+        initialBookFetching: true,
       })
     }
     default: return state

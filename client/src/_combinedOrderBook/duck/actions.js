@@ -24,8 +24,37 @@ const setMarketPair = pair => ({
   type: types.SET_MARKET_PAIR,
 });
 
-const fetchingBooks = pair => ({
-  type: types.FETCHING_BOOKS,
+const initialBookFetching = pair => ({
+  type: types.INITIAL_BOOK_FETCHING,
+});
+
+const initialBookFetchingSuccess = book => ({
+  payload: book,
+  type: types.INITIAL_BOOK_FETCHING_SUCCESS,
+});
+
+const initialBookFetchingFail = msg => ({
+  payload: msg,
+  type: types.INITIAL_BOOK_FETCHING_FAIL,
+});
+
+const setAutoUpdateInterval = intervalObj => ({
+  payload: intervalObj,
+  type: types.SET_AUTO_UPDATE_INTERVAL,
+});
+
+const fetchBook = () => ({
+  type: types.FETCH_BOOK,
+});
+
+const fetchBookSuccess = book => ({
+  payload: book,
+  type: types.FETCH_BOOK_SUCCESS,
+});
+
+const fetchBookFail = msg => ({
+  payload: msg,
+  type: types.FETCH_BOOK_FAIL,
 });
 
 export default {
@@ -34,5 +63,11 @@ export default {
   getSupportedExchangesFail,
   toggleExchange,
   setMarketPair,
-  fetchingBooks
+  initialBookFetching,
+  initialBookFetchingSuccess,
+  initialBookFetchingFail,
+  setAutoUpdateInterval,
+  fetchBook,
+  fetchBookSuccess,
+  fetchBookFail,
 }

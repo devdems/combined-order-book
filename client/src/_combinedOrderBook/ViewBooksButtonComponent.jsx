@@ -26,22 +26,23 @@ const Button = FlexDiv.extend`
 
 class CombinedOrderBookComponent extends React.Component {
   static propTypes = {
-    fetchingBooks: PropTypes.bool,
+    initialBookFetching: PropTypes.bool,
+    fetchBooks: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
-    fetchingBooks: false,
+    initialBookFetching: false,
   }
 
   render() {
-    const { fetchingBooks, fetchBooks } = this.props
+    const { initialBookFetching, fetchBooks } = this.props
     return (
       <Container>
         {
-          fetchingBooks ?
+          initialBookFetching ?
             <Spinner
               size={120}
-              spinnerColor="#333"
+              spinnerColor={"#333"}
               spinnerWidth={2}
               visible={true}
             /> :
@@ -50,7 +51,6 @@ class CombinedOrderBookComponent extends React.Component {
             >
               Start Fetching Books
             </Button>
-
         }
       </Container>
     )

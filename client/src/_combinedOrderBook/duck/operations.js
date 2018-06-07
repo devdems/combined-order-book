@@ -7,7 +7,7 @@ const fetchSupportedExchanges = () => {
     return axios.get('/api/get-supported-exchanges')
       .then(res => {
         const activeExchanges = res.data.reduce((obj, ex) => {
-          obj[ex] = false;
+          obj[ex] = true;
           return obj;
         }, {})
         dispatch(actions.getSupportedExchangesSuccess(activeExchanges))
@@ -21,7 +21,7 @@ const fetchSupportedExchanges = () => {
 
 const fetchBooks = () => {
   return (dispatch, getState) => {
-    dispatch(actions.fetchingBooks())
+    dispatch(actions.initialBookFetching())
     const state = getState().combinedOrderBook
     console.log(state);
     const market = state.marketPair.join('-');
