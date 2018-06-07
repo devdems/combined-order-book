@@ -27,7 +27,7 @@ const Button = FlexDiv.extend`
 class CombinedOrderBookComponent extends React.Component {
   static propTypes = {
     initialBookFetching: PropTypes.bool,
-    fetchBooks: PropTypes.func.isRequired,
+    fetchBookInitial: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -35,7 +35,7 @@ class CombinedOrderBookComponent extends React.Component {
   }
 
   render() {
-    const { initialBookFetching, fetchBooks } = this.props
+    const { initialBookFetching, fetchBookInitial } = this.props
     return (
       <Container>
         {
@@ -47,7 +47,7 @@ class CombinedOrderBookComponent extends React.Component {
               visible={true}
             /> :
             <Button
-              onClick={fetchBooks}
+              onClick={fetchBookInitial}
             >
               Start Fetching Books
             </Button>

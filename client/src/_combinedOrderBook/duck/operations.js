@@ -19,23 +19,39 @@ const fetchSupportedExchanges = () => {
   }
 }
 
-const fetchBooks = () => {
+const fetchBookInitial = () => {
   return (dispatch, getState) => {
-    dispatch(actions.initialBookFetching())
     const state = getState().combinedOrderBook
-    console.log(state);
+
+    window.clearInterval(state.autoUpdateIntervalObj)
+    dispatch(actions.initialBookFetching())
+
     const market = state.marketPair.join('-');
     const exchanges = state.exchanges.filter(ex =>
       state.activeExchanges[ex]
     ).join(',');
+
     const baseUrl = './api/get-order-books';
     const url = `${baseUrl}?market=${market}&exchanges=${exchanges}`;
     return axios.get(url)
       .then(res => {
-        console.log('then', res);
+        dispatch(actions.initialBookFetchingSuccess(res.data))
+        const autoUpdateInterval = window.setInterval(() => {
+          dispatch(actions.fetchBook());
+          axios.get(url)
+            .then(res => {
+              dispatch(actions.fetchBookSuccess(res.data));
+              console.log('then', res);
+            })
+            .catch(res => {
+              dispatch(actions.fetchBookFail('failure'));
+              console.log('catch', res);
+            });
+        }, 5000);
+        dispatch(actions.setAutoUpdateInterval(autoUpdateInterval))
       })
       .catch(res => {
-        console.log('catch', res);
+        dispatch()
       })
   }
 }
@@ -49,5 +65,5 @@ export default {
   fetchSupportedExchanges,
   toggleExchange,
   setMarketPair,
-  fetchBooks,
+  fetchBookInitial,
 };

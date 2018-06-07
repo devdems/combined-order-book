@@ -15,10 +15,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   const {
-    fetchBooks,
+    fetchBookInitial,
   } = operations;
   return {
-    fetchBooks: () => dispatch(fetchBooks()),
+    fetchBookInitial: () => dispatch(fetchBookInitial()),
   }
 }
 
