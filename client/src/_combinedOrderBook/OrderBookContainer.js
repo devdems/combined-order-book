@@ -7,11 +7,13 @@ const mapStateToProps = state => {
     book,
     initialFetching,
     fetchFailedMsg,
+    activeExchanges,
   } = state.combinedOrderBook;
   return {
     book,
     initialFetching,
     fetchFailedMsg,
+    activeExchanges,
   };
 }
 

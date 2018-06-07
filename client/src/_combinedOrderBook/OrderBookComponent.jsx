@@ -24,6 +24,24 @@ class OrderBookComponent extends React.Component {
     fetchFailedMsg: '',
   }
 
+  createColumns = () => {
+    const { activeExchanges } = this.props;
+    const exchanges = Object.keys(activeExchanges).filter(ex =>
+      activeExchanges[ex]
+    );
+    const headers = {
+      bids: [],
+      asks: [],
+    }
+    exchanges.forEach(ex => {
+      const header = {
+        id: ex,
+        Header: `${ex.charAt(0).toUpperCase()}${ex.slice(1)}`,
+        accessor: d => d[ex] || 0,
+      }
+    })
+  }
+
   render() {
     const {
 
