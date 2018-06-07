@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import ExchangeSelectorContainer from './ExchangeSelectorContainer'
-import MarketInputsContainer from './MarketInputsContainer'
-import ViewBooksButtonContainer from './ViewBooksButtonContainer'
+import ExchangeSelector from './ExchangeSelectorContainer'
+import MarketInputs from './MarketInputsContainer'
+import FetchBookButton from './FetchBookButtonContainer'
+import OrderBook from './OrderBookContainer'
 import { FlexDiv } from './Components.styled'
 
 const Container = styled.div`
@@ -42,15 +43,15 @@ class CombinedOrderBookComponent extends React.Component {
             <FlexDiv direction="column">
               <FlexDiv grow={0.05} direction="column">
                 <FlexDiv grow={1}>
-                  <ExchangeSelectorContainer />
+                  <ExchangeSelector />
                 </FlexDiv>
                 <FlexDiv grow={1}>
-                  <MarketInputsContainer />
-                  <ViewBooksButtonContainer />
+                  <MarketInputs />
+                  <FetchBookButton />
                 </FlexDiv>
               </FlexDiv>
               <FlexDiv grow={1}>
-
+                <OrderBook />
               </FlexDiv>
             </FlexDiv>
         }

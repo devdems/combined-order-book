@@ -8,6 +8,7 @@ import { FlexDiv } from './Components.styled'
 const Container = styled.div`
   flex: 1 0;
   width: 100%;
+  text-align: center;
 `
 const Button = FlexDiv.extend`
   border-radius: 10px;
@@ -24,7 +25,7 @@ const Button = FlexDiv.extend`
   }
 `
 
-class CombinedOrderBookComponent extends React.Component {
+class FetchBookButtonComponent extends React.Component {
   static propTypes = {
     initialBookFetching: PropTypes.bool,
     fetchBookInitial: PropTypes.func.isRequired,
@@ -47,9 +48,9 @@ class CombinedOrderBookComponent extends React.Component {
         {
           initialBookFetching ?
             <Spinner
-              size={120}
+              size={60}
               spinnerColor={"#333"}
-              spinnerWidth={2}
+              spinnerWidth={4}
               visible={true}
             /> :
             <Button
@@ -67,4 +68,4 @@ class CombinedOrderBookComponent extends React.Component {
   }
 }
 
-export default CombinedOrderBookComponent
+export default FetchBookButtonComponent

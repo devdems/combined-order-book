@@ -51,6 +51,7 @@ export default (state = initialState, action) => {
         initialBookFetching: true,
         fetchFailedCount: 0,
         fetchFailed: false,
+        fetchFailedMsg: '',
         autoUpdateIntervalObj: '',
       });
     }

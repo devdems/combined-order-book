@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { operations } from './duck'
-import ViewBooksButtonComponent from './ViewBooksButtonComponent'
+import FetchBookButtonComponent from './FetchBookButtonComponent'
 
 const mapStateToProps = state => {
   const {
@@ -25,4 +25,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ViewBooksButtonComponent);
+)(FetchBookButtonComponent);

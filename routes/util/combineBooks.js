@@ -18,8 +18,8 @@ module.exports = (booksObj) => {
           combinedVolume: volume,
         };
       } else {
-        combinedBook.bidsByPrice[rate][exchange] = volume;
         combinedBook.bidsByPrice[rate].combinedVolume += volume
+        combinedBook.bidsByPrice[rate][exchange] = volume;
       }
     });
     booksObj[exchange].asks.forEach(ask => {
@@ -31,8 +31,8 @@ module.exports = (booksObj) => {
           combinedVolume: volume,
         };
       } else {
-        combinedBook.asksByPrice[rate][exchange] = volume;
         combinedBook.asksByPrice[rate].combinedVolume += volume
+        combinedBook.asksByPrice[rate][exchange] = volume;
       }
     });
   });
