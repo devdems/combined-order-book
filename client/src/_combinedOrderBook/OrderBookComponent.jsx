@@ -29,17 +29,45 @@ class OrderBookComponent extends React.Component {
     const exchanges = Object.keys(activeExchanges).filter(ex =>
       activeExchanges[ex]
     );
-    const headers = {
-      bids: [],
-      asks: [],
-    }
+    const headers = [];
     exchanges.forEach(ex => {
       const header = {
         id: ex,
         Header: `${ex.charAt(0).toUpperCase()}${ex.slice(1)}`,
-        accessor: d => d[ex] || 0,
+        accessor: d => d.bids[ex] || 0,
       }
-    })
+      headers.push(header)
+    });
+    headers.push({
+        id: 'totalVolume',
+        Header: 'Combined Volume',
+        accessor: d => d.bids.totalVolume,
+      },{
+        id: 'bidPrice',
+        Header: 'Bid Price',
+        accessor: d => d.bidPrice,
+      },{
+        id: 'match',
+        Header: 'Match?',
+        accessor: d => d.match,
+      },{
+        id: 'askPrice',
+        Header: 'Ask Price',
+        accessor: d => d.askPrice,
+      },{
+        id: 'totalVolume',
+        Header: 'Combined Volume',
+        accessor: d => d.asks.totalVolume,
+      },
+    )
+    exchanges.forEach(ex => {
+      const header = {
+        id: ex,
+        Header: `${ex.charAt(0).toUpperCase()}${ex.slice(1)}`,
+        accessor: d => d.asks[ex] || 0,
+      }
+      headers.push(header)
+    });
   }
 
   render() {
