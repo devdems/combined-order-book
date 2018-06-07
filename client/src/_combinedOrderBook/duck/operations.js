@@ -21,7 +21,7 @@ const fetchSupportedExchanges = () => {
 
 const fetchBooks = () => {
   return (dispatch, getState) => {
-    
+    dispatch(actions.fetchingBooks())
   }
 }
 

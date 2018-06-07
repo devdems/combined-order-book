@@ -2,6 +2,7 @@ const router = require('express').Router();
 const api = require('./api');
 const standardize = require('./util/standardizeOrderBooks');
 const translateMarket = require('./util/translateMarketSyntax');
+const combineBooks = require('./util/combineBooks');
 
 router.get('/', getOrderBooks);
 
@@ -15,18 +16,20 @@ async function getOrderBooks(req, res) {
     Object.keys(api).includes(ex)
   );
 
-  let combinedBook = {};
+  let books = {};
 
   for (exchange of exchanges) {
     try {
       const translatedMarket = translateMarket[exchange](market);
       const response = await api[exchange].getOrderBook(translatedMarket);
       const orderBook = standardize[exchange](response);
-      combinedBook[exchange] = orderBook;
+      books[exchange] = orderBook;
     } catch(err) {
-      combinedBook[exchange] = ({ err });
+      books[exchange] = ({ err });
     }
   }
+
+  const combinedBook = combineBooks(books);
 
   res.send(combinedBook);
 }

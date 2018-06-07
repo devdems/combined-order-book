@@ -8,7 +8,6 @@ export const FlexDiv = styled.div`
   justify-content: center;
   align-items: center;
   align-self: stretch;
-  ${'' /* border: 1px solid blue; */}
 `
 export const FlexSpacer = styled.div`
   flex-grow: ${props => props.grow ? props.grow : 1};
