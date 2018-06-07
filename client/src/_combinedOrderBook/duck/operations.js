@@ -38,7 +38,7 @@ const fetchBookInitial = () => {
         dispatch(actions.initialBookFetchingSuccess(res.data))
         const autoUpdateInterval = window.setInterval(
           intervalBookFetch(dispatch, url),
-          5000,
+          4000,
         );
         dispatch(actions.setAutoUpdateInterval(autoUpdateInterval))
       })
@@ -54,11 +54,9 @@ function intervalBookFetch(dispatch, url) {
     axios.get(url)
       .then(res => {
         dispatch(actions.fetchBookSuccess(res.data));
-        console.log('then', res);
       })
       .catch(res => {
         dispatch(actions.fetchBookFail('failure'));
-        console.log('catch', res);
       });
   }
 }

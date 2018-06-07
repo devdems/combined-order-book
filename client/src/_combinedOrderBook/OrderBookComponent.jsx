@@ -1,25 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import Spinner from 'react-spinner-material';
-
-import { FlexDiv } from './Components.styled'
+import ReactTable from 'react-table'
+import 'react-table/react-table.css'
 
 const Container = styled.div`
   flex: 1 0;
   width: 100%;
+  position: absolute;
+  padding-top: 20px;
 `
 
 
 class OrderBookComponent extends React.Component {
   static propTypes = {
-    book: PropTypes.object,
+    book: PropTypes.arrayOf(PropTypes.object),
     initialFetching: PropTypes.bool,
     fetchFailedMsg: PropTypes.string,
   }
 
   static defaultProps = {
-    book: {},
+    book: [],
     initialFetching: false,
     fetchFailedMsg: '',
   }
@@ -29,16 +30,16 @@ class OrderBookComponent extends React.Component {
     const exchanges = Object.keys(activeExchanges).filter(ex =>
       activeExchanges[ex]
     );
-    const headers = [];
+    const columns = [];
     exchanges.forEach(ex => {
       const header = {
         id: ex,
         Header: `${ex.charAt(0).toUpperCase()}${ex.slice(1)}`,
         accessor: d => d.bids[ex] || 0,
       }
-      headers.push(header)
+      columns.push(header)
     });
-    headers.push({
+    columns.push({
         id: 'totalVolume',
         Header: 'Combined Volume',
         accessor: d => d.bids.totalVolume,
@@ -66,17 +67,26 @@ class OrderBookComponent extends React.Component {
         Header: `${ex.charAt(0).toUpperCase()}${ex.slice(1)}`,
         accessor: d => d.asks[ex] || 0,
       }
-      headers.push(header)
+      columns.push(header)
     });
+    return columns
   }
 
   render() {
-    const {
-
-     } = this.props
+    const { book } = this.props
+    const columns = Object.keys(book.length) && this.createColumns()
+    console.log(columns)
     return (
       <Container>
-        hi
+        {
+          Object.keys(book).length ?
+            <ReactTable
+              data={book}
+              columns={columns}
+            /> :
+            ['Click Button Above to start']
+        }
+
       </Container>
     )
   }

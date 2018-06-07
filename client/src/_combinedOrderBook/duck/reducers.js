@@ -11,7 +11,7 @@ const initialState = {
   fetchFailedCount: 0,
   fetchFailed: false,
   fetchFailedMsg: '',
-  book: {},
+  book: [],
 };
 
 export default (state = initialState, action) => {

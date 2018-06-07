@@ -15,7 +15,7 @@ const Header = styled.div`
   align-items: center;
   background-color: #222;
   color: white;
-  flex: .1 0;
+  flex: .05 0;
 `
 const Title = styled.h1`
   font-size: 1.5em;
