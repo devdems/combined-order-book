@@ -4,11 +4,18 @@ import styled from 'styled-components'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 
+import { FlexDiv, FlexSpacer } from './Components.styled'
+
 const Container = styled.div`
   flex: 1 0;
+  align-self: flex-start;
   width: 100%;
   position: absolute;
-  padding-top: 20px;
+`
+const BidAskLabel = FlexDiv.extend`
+  font-size: 1.5em;
+  margin-top: -20px;
+  padding-bottom: 20px;
 `
 
 
@@ -80,10 +87,17 @@ class OrderBookComponent extends React.Component {
       <Container>
         {
           Object.keys(book).length ?
-            <ReactTable
-              data={book}
-              columns={columns}
-            /> :
+            <div>
+              <FlexDiv>
+                <BidAskLabel>Bids</BidAskLabel>
+                <FlexSpacer size={20} />
+                <BidAskLabel>Asks</BidAskLabel>
+              </FlexDiv>
+              <ReactTable
+                data={book}
+                columns={columns}
+              />
+            </div> :
             ['Click Button Above to start']
         }
 
