@@ -37,7 +37,7 @@ const fetchBookInitial = () => {
       .then(res => {
         dispatch(actions.initialBookFetchingSuccess(res.data))
         const autoUpdateInterval = window.setInterval(
-          intervalBookFetch(dispatch, url),
+          fetchBookOnInterval(dispatch, url),
           4000,
         );
         dispatch(actions.setAutoUpdateInterval(autoUpdateInterval))
@@ -48,7 +48,7 @@ const fetchBookInitial = () => {
   }
 }
 
-function intervalBookFetch(dispatch, url) {
+function fetchBookOnInterval(dispatch, url) {
   return () => {
     dispatch(actions.fetchBook());
     axios.get(url)
