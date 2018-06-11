@@ -11,6 +11,7 @@ import { FlexDiv } from './Components.styled'
 const Container = styled.div`
   display: flex;
   flex: 1 0;
+  align-items: center;
   max-width: 800px;
   width: 100%;
 `
@@ -31,8 +32,8 @@ class CombinedOrderBookComponent extends React.Component {
   }
 
   constructor(props) {
-    super(props)
-    this.props.fetchSupportedExchanges()
+    super(props);
+    this.props.fetchSupportedExchanges();
   }
 
   render() {
@@ -41,27 +42,28 @@ class CombinedOrderBookComponent extends React.Component {
       <Container>
         {
           fetchingExchanges ?
-            <InformingText>Fetching Supported Exchanges...</InformingText> :
-          fetchingExchangesFailed ?
-          ['Could not contact server. Refresh the page to try again'] :
-            <FlexDiv direction="column">
-              <FlexDiv grow={0.05} direction="column">
-                <FlexDiv grow={1}>
-                  <ExchangeSelector />
-                </FlexDiv>
-                <FlexDiv grow={1}>
-                  <MarketInputs />
-                  <FetchBookButton />
-                </FlexDiv>
+            <InformingText>Fetching Supported Exchanges...</InformingText>
+          : fetchingExchangesFailed ?
+            ['Could not contact server. Refresh the page to try again.']
+          :
+          <FlexDiv direction="column">
+            <FlexDiv grow={0.05} direction="column">
+              <FlexDiv>
+                <ExchangeSelector />
               </FlexDiv>
-              <FlexDiv grow={1}>
-                <OrderBook />
+              <FlexDiv>
+                <MarketInputs />
+                <FetchBookButton />
               </FlexDiv>
             </FlexDiv>
+            <FlexDiv>
+              <OrderBook />
+            </FlexDiv>
+          </FlexDiv>
         }
       </Container>
-    )
+    );
   }
 }
 
-export default CombinedOrderBookComponent
+export default CombinedOrderBookComponent;

@@ -1,17 +1,20 @@
-module.exports = (booksObj) => {
-  const exchanges = Object.keys(booksObj)
+// combines the response books from different exchanges
+// into the single array format used by the table component
+// in the client
 
-  // return booksObj
+module.exports = (booksObj) => {
+  const exchanges = Object.keys(booksObj);
 
   const combinedBook = {
     asksByPrice: {},
     bidsByPrice: {},
-  }
+  };
 
   exchanges.forEach(exchange => {
+
     booksObj[exchange].bids.forEach(bid => {
       const volume = Number(bid.Quantity);
-      const rate = bid.Rate
+      const rate = bid.Rate;
       if (!combinedBook.bidsByPrice[rate]) {
         combinedBook.bidsByPrice[rate] = {
           [exchange]: volume,
@@ -20,9 +23,10 @@ module.exports = (booksObj) => {
         combinedBook.bidsByPrice[rate][exchange] = volume;
       }
     });
+
     booksObj[exchange].asks.forEach(ask => {
       const volume = Number(ask.Quantity);
-      const rate = ask.Rate
+      const rate = ask.Rate;
       if (!combinedBook.asksByPrice[rate]) {
         combinedBook.asksByPrice[rate] = {
           [exchange]: volume,
@@ -31,11 +35,13 @@ module.exports = (booksObj) => {
         combinedBook.asksByPrice[rate][exchange] = volume;
       }
     });
+
   });
 
   combinedBook.bidPrices = Object.keys(combinedBook.bidsByPrice).sort((a, b) => {
     return Number(b) - Number(a);
   }).slice(0, 99);
+
   combinedBook.askPrices = Object.keys(combinedBook.asksByPrice).sort((a, b) => {
     return Number(a) - Number(b);
   }).slice(0, 99);
@@ -43,8 +49,10 @@ module.exports = (booksObj) => {
   outputBook = [];
 
   for (let i = 0; i < 100; i += 1) {
+
     const bidPrice = combinedBook.bidPrices[i];
     const askPrice = combinedBook.askPrices[i];
+
     const row = {
       bidPrice,
       askPrice,
@@ -70,6 +78,7 @@ module.exports = (booksObj) => {
     })
 
     outputBook.push(row);
+
   }
 
   return outputBook
