@@ -1,6 +1,8 @@
 # Combined Order Book
 Displays bid and ask order volumes from multiple exchanges at each price point, as well as combined volume and if bids or asks match up across exchanges.
 
+#### [Deployed on Heroku](https://combined-order-book-cc.herokuapp.com/)
+
 ## Libraries Used
 Server:
 - Node
