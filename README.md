@@ -5,7 +5,7 @@ Displays bid and ask order volumes from multiple exchanges at each price point, 
 
 ## Developing Locally
 Development Node Version: v9.7.1
-1) Clone repository and cd into it
+1) Clone repository and `cd` into it
 ```
 ../$ git clone https://github.com/elliothimmelfarb/combined-order-book.git
 ../$ cd combined-order-book
@@ -14,11 +14,13 @@ Development Node Version: v9.7.1
 ```
 ../combined-order-book$ npm run dev
 ```
-3) cd into the client folder and run the development webpack server
+3) `cd` into the client folder and start the Webpack development server
 ```
 ../combined-order-book$ cd client
 ../combined-order-book/client$ npm start
 ```
+
+The client app will be accessible at `localhost:3000`.
 
 Use `npm run test` in either directory to run tests at that level.
 
