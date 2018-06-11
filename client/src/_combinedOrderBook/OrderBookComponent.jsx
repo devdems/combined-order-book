@@ -34,21 +34,25 @@ class OrderBookComponent extends React.Component {
 
   createColumns = () => {
     const { activeExchanges } = this.props;
+
     const exchanges = Object.keys(activeExchanges).filter(ex =>
       activeExchanges[ex]
     );
     const columns = [];
+
     exchanges.forEach(ex => {
       const header = {
-        id: ex,
+        id: `${ex}_bid`,
         Header: `${ex.charAt(0).toUpperCase()}${ex.slice(1)}`,
         accessor: d => d.bids[ex] || 0,
-      }
+      };
       columns.push(header)
     });
-    columns.push({
-        id: 'totalVolume',
-        Header: 'Combined Volume',
+
+    columns.push(
+      {
+        id: 'totalBid',
+        Header: 'Total',
         accessor: d => d.bids.totalVolume,
       },{
         id: 'bidPrice',
@@ -56,33 +60,35 @@ class OrderBookComponent extends React.Component {
         accessor: d => d.bidPrice,
       },{
         id: 'match',
-        Header: 'Match?',
+        Header: 'Match',
         accessor: d => d.match,
       },{
         id: 'askPrice',
         Header: 'Ask Price',
         accessor: d => d.askPrice,
       },{
-        id: 'totalVolume',
-        Header: 'Combined Volume',
+        id: 'totalAsk',
+        Header: 'Total',
         accessor: d => d.asks.totalVolume,
       },
     )
+
     exchanges.forEach(ex => {
       const header = {
-        id: ex,
+        id: `${ex}_ask`,
         Header: `${ex.charAt(0).toUpperCase()}${ex.slice(1)}`,
         accessor: d => d.asks[ex] || 0,
-      }
+      };
       columns.push(header)
     });
+
     return columns
   }
 
   render() {
-    const { book, fetchFailedMsg } = this.props
-    const columns = Object.keys(book.length) && this.createColumns()
-    console.log(columns)
+    const { book, fetchFailedMsg } = this.props;
+    const columns = book.length && this.createColumns();
+    console.log(book)
     return (
       <Container>
         {
