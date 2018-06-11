@@ -1,4 +1,4 @@
-import { injectGlobal } from 'styled-components'
+import { injectGlobal } from 'styled-components';
 
 injectGlobal`
   body {
@@ -6,4 +6,4 @@ injectGlobal`
     padding: 0;
     font-family: sans-serif;
   }
-`
+`;

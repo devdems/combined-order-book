@@ -1,6 +1,6 @@
-import { connect } from 'react-redux'
-import { operations } from './duck'
-import MarketInputsComponent from './MarketInputsComponent'
+import { connect } from 'react-redux';
+import { operations } from './duck';
+import MarketInputsComponent from './MarketInputsComponent';
 
 const mapStateToProps = state => {
   const {
@@ -9,7 +9,7 @@ const mapStateToProps = state => {
   return {
     marketPair,
   };
-}
+};
 
 const mapDispatchToProps = dispatch => {
   const {
@@ -17,8 +17,8 @@ const mapDispatchToProps = dispatch => {
   } = operations;
   return {
     setMarketPair: (pair) => dispatch(setMarketPair(pair)),
-  }
-}
+  };
+};
 
 export default connect(
   mapStateToProps,

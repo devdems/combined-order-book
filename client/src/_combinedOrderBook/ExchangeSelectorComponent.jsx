@@ -1,8 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-import { FlexDiv } from './Components.styled'
+import { FlexDiv } from './Components.styled';
 
 const Container = styled.div`
   display: flex;
@@ -13,7 +13,8 @@ const Container = styled.div`
   overflow: hidden;
   border: 1px solid green;
   height: 40px;
-`
+`;
+
 const ExchangeButton = FlexDiv.extend`
   background-color: ${props => props.active ? 'green' : 'white'};
   flex: 1 1;
@@ -21,7 +22,8 @@ const ExchangeButton = FlexDiv.extend`
   &:hover {
     background-color: ${props => props.active ? 'green' : 'grey'};
   }
-`
+`;
+
 
 class ExchangeSelectorComponent extends React.Component {
   static propTypes = {
@@ -63,8 +65,8 @@ class ExchangeSelectorComponent extends React.Component {
       <Container>
         { this.renderExchangeButtons() }
       </Container>
-    )
+    );
   }
 }
 
-export default ExchangeSelectorComponent
+export default ExchangeSelectorComponent;

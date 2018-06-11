@@ -48,10 +48,12 @@ const fetchBookInitial = () => {
   }
 }
 
+
+// this is passed to the interval created in the function above
 function fetchBookOnInterval(dispatch, url) {
   return () => {
     dispatch(actions.fetchBook());
-    axios.get(url)
+    return axios.get(url)
       .then(res => {
         dispatch(actions.fetchBookSuccess(res.data));
       })

@@ -1,5 +1,5 @@
-import { connect } from 'react-redux'
-import OrderBookComponent from './OrderBookComponent'
+import { connect } from 'react-redux';
+import OrderBookComponent from './OrderBookComponent';
 
 const mapStateToProps = state => {
   const {

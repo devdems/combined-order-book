@@ -70,4 +70,4 @@ export default {
   fetchBook,
   fetchBookSuccess,
   fetchBookFail,
-}
+};

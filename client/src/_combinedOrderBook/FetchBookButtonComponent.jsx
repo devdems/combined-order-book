@@ -1,15 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Spinner from 'react-spinner-material';
 
-import { FlexDiv } from './Components.styled'
+import { FlexDiv } from './Components.styled';
 
 const Container = styled.div`
   flex: 1 0;
   width: 100%;
   text-align: center;
-`
+`;
+
 const Button = FlexDiv.extend`
   border-radius: 10px;
   padding: 10px;
@@ -23,7 +24,8 @@ const Button = FlexDiv.extend`
   &:hover {
     background-color: green;
   }
-`
+`;
+
 
 class FetchBookButtonComponent extends React.Component {
   static propTypes = {
@@ -42,7 +44,7 @@ class FetchBookButtonComponent extends React.Component {
       initialBookFetching,
       fetchBookInitial,
       autoUpdateIntervalObj,
-     } = this.props
+    } = this.props;
     return (
       <Container>
         {
@@ -64,8 +66,8 @@ class FetchBookButtonComponent extends React.Component {
             </Button>
         }
       </Container>
-    )
+    );
   }
 }
 
-export default FetchBookButtonComponent
+export default FetchBookButtonComponent;

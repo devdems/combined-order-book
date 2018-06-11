@@ -1,3 +1,3 @@
-import CombinedOrderBookContainer from './CombinedOrderBookContainer'
+import CombinedOrderBookContainer from './CombinedOrderBookContainer';
 
-export default CombinedOrderBookContainer
+export default CombinedOrderBookContainer;

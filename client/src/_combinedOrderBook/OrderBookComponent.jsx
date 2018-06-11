@@ -1,22 +1,23 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import ReactTable from 'react-table'
-import 'react-table/react-table.css'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
 
-import { FlexDiv, FlexSpacer } from './Components.styled'
+import { FlexDiv, FlexSpacer } from './Components.styled';
 
 const Container = styled.div`
   flex: 1 0;
   align-self: flex-start;
   width: 100%;
   position: absolute;
-`
+`;
+
 const BidAskLabel = FlexDiv.extend`
   font-size: 1.5em;
   margin-top: -10px;
   padding-bottom: 20px;
-`
+`;
 
 
 class OrderBookComponent extends React.Component {
@@ -32,20 +33,25 @@ class OrderBookComponent extends React.Component {
     fetchFailedMsg: '',
   }
 
+  // react-table requires an array that declares what the columns are.
+  // The columns appear in array order from left to right
   createColumns = () => {
     const { activeExchanges } = this.props;
 
     const exchanges = Object.keys(activeExchanges).filter(ex =>
       activeExchanges[ex]
     );
+
     const columns = [];
 
+    // add one bid column per exchange
     exchanges.forEach(ex => {
       const header = {
         id: `${ex}_bid`,
         Header: `${ex.charAt(0).toUpperCase()}${ex.slice(1)}`,
         accessor: d => d.bids[ex] || 0,
       };
+
       columns.push(header)
     });
 
@@ -71,15 +77,17 @@ class OrderBookComponent extends React.Component {
         Header: 'Total',
         accessor: d => d.asks.totalVolume,
       },
-    )
+    );
 
+    // add one ask column per exchange
     exchanges.forEach(ex => {
       const header = {
         id: `${ex}_ask`,
         Header: `${ex.charAt(0).toUpperCase()}${ex.slice(1)}`,
         accessor: d => d.asks[ex] || 0,
       };
-      columns.push(header)
+
+      columns.push(header);
     });
 
     return columns
@@ -88,7 +96,6 @@ class OrderBookComponent extends React.Component {
   render() {
     const { book, fetchFailedMsg } = this.props;
     const columns = book.length && this.createColumns();
-    console.log(book)
     return (
       <Container>
         {
@@ -109,8 +116,8 @@ class OrderBookComponent extends React.Component {
             ['Click Button Above to start']
         }
       </Container>
-    )
+    );
   }
 }
 
-export default OrderBookComponent
+export default OrderBookComponent;

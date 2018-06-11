@@ -1,12 +1,12 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-import ExchangeSelector from './ExchangeSelectorContainer'
-import MarketInputs from './MarketInputsContainer'
-import FetchBookButton from './FetchBookButtonContainer'
-import OrderBook from './OrderBookContainer'
-import { FlexDiv } from './Components.styled'
+import ExchangeSelector from './ExchangeSelectorContainer';
+import MarketInputs from './MarketInputsContainer';
+import FetchBookButton from './FetchBookButtonContainer';
+import OrderBook from './OrderBookContainer';
+import { FlexDiv } from './Components.styled';
 
 const Container = styled.div`
   display: flex;
@@ -14,11 +14,13 @@ const Container = styled.div`
   align-items: center;
   max-width: 800px;
   width: 100%;
-`
+`;
+
 const InformingText = styled.div`
   display: flex;
   font-size: 1.5em;
-`
+`;
+
 
 class CombinedOrderBookComponent extends React.Component {
   static propTypes = {

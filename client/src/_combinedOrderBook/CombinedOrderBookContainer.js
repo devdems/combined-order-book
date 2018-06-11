@@ -1,6 +1,6 @@
-import { connect } from 'react-redux'
-import { operations } from './duck'
-import CombinedOrderBookComponent from './CombinedOrderBookComponent'
+import { connect } from 'react-redux';
+import { operations } from './duck';
+import CombinedOrderBookComponent from './CombinedOrderBookComponent';
 
 const mapStateToProps = state => {
   const {
@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => {
   } = operations;
   return {
     fetchSupportedExchanges: () => dispatch(fetchSupportedExchanges()),
-  }
+  };
 }
 
 export default connect(
