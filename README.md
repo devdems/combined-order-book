@@ -74,8 +74,8 @@ To add a new exchange:
 If you followed the above steps correctly, next time you run the client, the new exchange will appear in the top toggle bar and it will be able to include that exchange's order book in the table. If we add too many more exchanges, though, we will definitely need to rethink how we are displaying the table as we may run out of room quickly.
 
 ## Roadmap for Improvement
+- Better test coverage
 - Better feedback for when nothing is returned due to chosing a market that doesn't work
 - Spinner that provides reminder that table is live-updating
 - Colors on table to make comparing exchanges easier
 - Color in "Match" column instead of just "true" if there is a match
-- More tests
