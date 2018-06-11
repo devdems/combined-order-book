@@ -3,13 +3,33 @@ Displays bid and ask order volumes from multiple exchanges at each price point, 
 
 #### [Deployed on Heroku](https://combined-order-book-cc.herokuapp.com/)
 
+## Developing Locally
+Development Node Version: v9.7.1
+1) Clone repository and cd into it
+```
+../$ git clone https://github.com/elliothimmelfarb/combined-order-book.git
+../$ cd combined-order-book
+```
+2) Start the server running with Nodemon
+```
+../combined-order-book$ npm run dev
+```
+3) cd into the client folder and run the development webpack server
+```
+../combined-order-book$ cd client
+../combined-order-book/client$ npm start
+```
+
+Use `npm run test` in either directory to run tests at that level.
+
 ## Libraries Used
 Server:
 - Node
 - Express
-- Mocha / Chai
 - [Axios](https://github.com/axios/axios)
+- Mocha / Chai.expect
 - [Supertest](https://github.com/visionmedia/supertest)
+- Nodemon
 
 Client:
 - Create React App
@@ -18,7 +38,7 @@ Client:
 - [React Table](https://github.com/react-tools/react-table)
 - [React Spinner Material](https://github.com/icarus-sullivan/react-spinner-material)
 - Axios
-- Jest / Chai / redux-mock-store / axios-mock-adapter
+- Jest / Chai.expect / redux-mock-store / axios-mock-adapter
 
 ## Structure
 Back-End code lives at the root of the project:
