@@ -3,6 +3,7 @@
 // in the client
 
 module.exports = (booksObj) => {
+
   const exchanges = Object.keys(booksObj);
 
   const combinedBook = {
@@ -38,46 +39,49 @@ module.exports = (booksObj) => {
 
   });
 
-  combinedBook.bidPrices = Object.keys(combinedBook.bidsByPrice).sort((a, b) => {
-    return Number(b) - Number(a);
-  }).slice(0, 99);
+  const bidPrices = Object.keys(combinedBook.bidsByPrice).sort((a, b) =>
+    Number(b) - Number(a)
+  );
 
-  combinedBook.askPrices = Object.keys(combinedBook.asksByPrice).sort((a, b) => {
-    return Number(a) - Number(b);
-  }).slice(0, 99);
+  const askPrices = Object.keys(combinedBook.asksByPrice).sort((a, b) =>
+    Number(a) - Number(b)
+  );
 
-  outputBook = [];
+  const outputBook = [];
 
   for (let i = 0; i < 100; i += 1) {
 
-    const bidPrice = combinedBook.bidPrices[i];
-    const askPrice = combinedBook.askPrices[i];
+    if (bidPrices[i] && askPrices[i]) {
 
-    const row = {
-      bidPrice,
-      askPrice,
-      match: Number(bidPrice) === Number(askPrice),
-      bids: {
-        totalVolume: 0,
-      },
-      asks: {
-        totalVolume: 0,
-      },
-    };
+      const bidPrice = bidPrices[i];
+      const askPrice = askPrices[i];
 
-    Object.keys(combinedBook.bidsByPrice[bidPrice] || {}).forEach(ex => {
-      const volume = combinedBook.bidsByPrice[bidPrice][ex]
-      row.bids[ex] = volume;
-      row.bids.totalVolume += volume;
-    })
+      const row = {
+        bidPrice,
+        askPrice,
+        match: Number(bidPrice) === Number(askPrice),
+        bids: {
+          totalVolume: 0,
+        },
+        asks: {
+          totalVolume: 0,
+        },
+      };
 
-    Object.keys(combinedBook.asksByPrice[askPrice] || {}).forEach(ex => {
-      const volume = combinedBook.asksByPrice[askPrice][ex]
-      row.asks[ex] = volume;
-      row.asks.totalVolume += volume;
-    })
+      Object.keys(combinedBook.bidsByPrice[bidPrice] || {}).forEach(ex => {
+        const volume = combinedBook.bidsByPrice[bidPrice][ex]
+        row.bids[ex] = volume;
+        row.bids.totalVolume += volume;
+      })
 
-    outputBook.push(row);
+      Object.keys(combinedBook.asksByPrice[askPrice] || {}).forEach(ex => {
+        const volume = combinedBook.asksByPrice[askPrice][ex]
+        row.asks[ex] = volume;
+        row.asks.totalVolume += volume;
+      })
+
+      outputBook.push(row);
+    }
 
   }
 
