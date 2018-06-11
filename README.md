@@ -31,7 +31,7 @@ Front-End code (non-create-react-app) lives in the `client/src` directory:
 - `client/src/store` contains Redux store initializers for dev and prod builds
 - `client/src/_combinedOrderBook/` contains the component/container pairs at the top level
 - `client/src/_combinedOrderBook/Components.styled.js` has a couple of reusable styled-components components
-- `client/src/_combinedOrderBook/ducks/ contains all the Redux pieces for the combined order book application
+- `client/src/_combinedOrderBook/ducks/` contains all the Redux pieces for the combined order book application
 
 I decided to structure my front-end code according to [this blog post](https://levelup.gitconnected.com/structure-your-react-redux-project-for-scalability-and-maintainability-618ad82e32b7). The Component/Container and keeping React and Redux code separated was a concept I was seeing in several projects I had looked at recently, including the [Drizzle and React-Auth boxes from the Truffle Framework](http://truffleframework.com/boxes/). It was fun trying out a new style and I have to say that I enjoyed this structure very much and will most likely use it in the future for my own projects.
 
