@@ -14,7 +14,7 @@ const Container = styled.div`
 `
 const BidAskLabel = FlexDiv.extend`
   font-size: 1.5em;
-  margin-top: -20px;
+  margin-top: -10px;
   padding-bottom: 20px;
 `
 
@@ -80,7 +80,7 @@ class OrderBookComponent extends React.Component {
   }
 
   render() {
-    const { book } = this.props
+    const { book, fetchFailedMsg } = this.props
     const columns = Object.keys(book.length) && this.createColumns()
     console.log(columns)
     return (
@@ -98,9 +98,10 @@ class OrderBookComponent extends React.Component {
                 columns={columns}
               />
             </div> :
+          fetchFailedMsg.length ?
+          fetchFailedMsg :
             ['Click Button Above to start']
         }
-
       </Container>
     )
   }

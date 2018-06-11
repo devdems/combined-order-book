@@ -2,13 +2,13 @@ import types from './types';
 
 const initialState = {
   fetchingExchanges: false,
+  fetchingExchangesFailed: false,
   exchanges: [],
   activeExchanges: {},
   marketPair: ['BTC', 'ETH'],
   autoUpdateIntervalObj: '',
   intialBookFetching: false,
   fetching: false,
-  fetchFailedCount: 0,
   fetchFailed: false,
   fetchFailedMsg: '',
   book: [],
@@ -31,12 +31,12 @@ export default (state = initialState, action) => {
     case types.GET_SUPPORTED_EXCHANGES_FAIL: {
       return Object.assign({}, state, {
         fetchingExchanges: false,
-        exchanges: action.payload,
+        fetchingExchangesFailed: true,
       });
     }
     case types.TOGGLE_EXCHANGE: {
-      const activeExchanges = { ...state.activeExchanges}
-      activeExchanges[action.payload] = !state.activeExchanges[action.payload]
+      const activeExchanges = { ...state.activeExchanges };
+      activeExchanges[action.payload] = !state.activeExchanges[action.payload];
       return Object.assign({}, state, {
         activeExchanges,
       });
@@ -50,7 +50,6 @@ export default (state = initialState, action) => {
     case types.INITIAL_BOOK_FETCHING: {
       return Object.assign({}, state, {
         initialBookFetching: true,
-        fetchFailedCount: 0,
         fetchFailed: false,
         fetchFailedMsg: '',
         autoUpdateIntervalObj: '',
@@ -91,6 +90,6 @@ export default (state = initialState, action) => {
         book: action.payload,
       });
     }
-    default: return state
+    default: return state;
   }
 }

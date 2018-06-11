@@ -5,9 +5,11 @@ import CombinedOrderBookComponent from './CombinedOrderBookComponent'
 const mapStateToProps = state => {
   const {
     fetchingExchanges,
+    fetchingExchangesFailed,
   } = state.combinedOrderBook;
   return {
     fetchingExchanges,
+    fetchingExchangesFailed,
   };
 }
 

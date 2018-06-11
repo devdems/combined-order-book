@@ -43,7 +43,7 @@ const fetchBookInitial = () => {
         dispatch(actions.setAutoUpdateInterval(autoUpdateInterval))
       })
       .catch(res => {
-        dispatch()
+        dispatch(actions.fetchBookFail(res.response))
       })
   }
 }
@@ -56,7 +56,7 @@ function fetchBookOnInterval(dispatch, url) {
         dispatch(actions.fetchBookSuccess(res.data));
       })
       .catch(res => {
-        dispatch(actions.fetchBookFail('failure'));
+        dispatch(actions.fetchBookFail(res));
       });
   }
 }

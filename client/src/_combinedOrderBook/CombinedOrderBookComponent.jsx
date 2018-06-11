@@ -22,10 +22,12 @@ const InformingText = styled.div`
 class CombinedOrderBookComponent extends React.Component {
   static propTypes = {
     fetchingExchanges: PropTypes.bool,
+    fetchingExchangesFailed: PropTypes.bool,
   }
 
   static defaultProps = {
     fetchingExchanges: false,
+    fetchingExchangesFailed: false,
   }
 
   constructor(props) {
@@ -34,12 +36,14 @@ class CombinedOrderBookComponent extends React.Component {
   }
 
   render() {
-    const { fetchingExchanges } = this.props
+    const { fetchingExchanges, fetchingExchangesFailed } = this.props
     return (
       <Container>
         {
           fetchingExchanges ?
             <InformingText>Fetching Supported Exchanges...</InformingText> :
+          fetchingExchangesFailed ?
+          ['Could not contact server. Refresh the page to try again'] :
             <FlexDiv direction="column">
               <FlexDiv grow={0.05} direction="column">
                 <FlexDiv grow={1}>

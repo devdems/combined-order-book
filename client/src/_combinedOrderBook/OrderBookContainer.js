@@ -14,7 +14,7 @@ const mapStateToProps = state => {
     fetchFailedMsg,
     activeExchanges,
   };
-}
+};
 
 export default connect(
   mapStateToProps,
